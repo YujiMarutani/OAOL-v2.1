@@ -11,7 +11,7 @@
       "records": [
         {
           "id": "oaol_v2_1_core",
-          "doi": "10.XXXX/zenodo.OAOL_v2_1",
+          "doi": "10.5281/zenodo.21471508",
           "title": "OAOL v2.1 — Autonomous Orchestration Operating Layer",
           "version": "v2.1",
           "artifacts": [
@@ -29,11 +29,11 @@
     "github": {
       "primary": false,
       "type": "source_repository",
-      "repo_url": "https://github.com/<your-account>/OAOL-v2.1",
+      "repo_url": "https://github.com/YujiMarutani/OAOL-v2.1",
       "releases": [
         {
           "tag": "v2.1",
-          "linked_doi": "10.XXXX/zenodo.OAOL_v2_1",
+          "linked_doi": "10.5281/zenodo.21471508",
           "artifacts": [
             "specs/",
             "docs/",
@@ -55,7 +55,7 @@
   "canonical_objects": {
     "runtime_spec": "OAOL_v2_1_Runtime_Spec.json",
     "intent_spec": "OAOL_Intent_v2.json",
-    "agents_spec": "OAOL_Agent_Prompts_v2.0.json",
+    "agents_spec": "OAOL_Agent_Prompts_v2_0.json",
     "orchestration_spec": "OAOL_Orchestration_v2.json",
     "flow_spec": "OAOL_Orchestration_Flow_v2_1.json",
     "execution_bindings_spec": "OAOL_Execution_Bindings_v2_1.json"
