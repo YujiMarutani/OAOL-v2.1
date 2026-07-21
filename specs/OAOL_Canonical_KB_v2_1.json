@@ -1,0 +1,77 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "system_id": "OAOL_Canonical_KB_v2_1",
+  "architecture_version": "v2.1",
+  "description": "Canonical knowledge base specification for OAOL v2.1 (Agent M). Defines authoritative sources, retrieval rules, and version alignment.",
+
+  "sources": {
+    "zenodo": {
+      "primary": true,
+      "type": "doi_repository",
+      "records": [
+        {
+          "id": "oaol_v2_1_core",
+          "doi": "10.XXXX/zenodo.OAOL_v2_1",
+          "title": "OAOL v2.1 — Autonomous Orchestration Operating Layer",
+          "version": "v2.1",
+          "artifacts": [
+            "OAOL_v2_1_Runtime_Spec.json",
+            "OAOL_Intent_v2.json",
+            "OAOL_Agent_Prompts_v2.0.json",
+            "OAOL_Orchestration_v2.json",
+            "OAOL_Orchestration_Flow_v2_1.json",
+            "OAOL_Execution_Bindings_v2_1.json"
+          ]
+        }
+      ]
+    },
+
+    "github": {
+      "primary": false,
+      "type": "source_repository",
+      "repo_url": "https://github.com/<your-account>/OAOL-v2.1",
+      "releases": [
+        {
+          "tag": "v2.1",
+          "linked_doi": "10.XXXX/zenodo.OAOL_v2_1",
+          "artifacts": [
+            "specs/",
+            "docs/",
+            "figures/",
+            "runtime/"
+          ]
+        }
+      ]
+    }
+  },
+
+  "retrieval_policy": {
+    "priority_order": ["zenodo", "github"],
+    "fallback_on_missing_doi": true,
+    "allow_ephemeral_session_data": false,
+    "require_version_alignment": true
+  },
+
+  "canonical_objects": {
+    "runtime_spec": "OAOL_v2_1_Runtime_Spec.json",
+    "intent_spec": "OAOL_Intent_v2.json",
+    "agents_spec": "OAOL_Agent_Prompts_v2.0.json",
+    "orchestration_spec": "OAOL_Orchestration_v2.json",
+    "flow_spec": "OAOL_Orchestration_Flow_v2_1.json",
+    "execution_bindings_spec": "OAOL_Execution_Bindings_v2_1.json"
+  },
+
+  "query_interface": {
+    "supported_queries": [
+      "get_runtime_spec",
+      "get_intent_spec",
+      "get_agents_spec",
+      "get_orchestration_spec",
+      "get_flow_spec",
+      "get_execution_bindings_spec",
+      "get_release_metadata",
+      "get_doi_record"
+    ],
+    "response_format": "JSON"
+  }
+}
