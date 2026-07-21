@@ -122,7 +122,7 @@ Agent M retrieves authoritative knowledge from **Zenodo DOI** and **GitHub Relea
 ### Zenodo DOI  
 (To be updated after publication)  
 
-10.XXXX/zenodo.OAOL_v2_1
+10.5281/zenodo.21471508/zenodo.OAOL_v2_1
 
 ### GitHub Release  
 
