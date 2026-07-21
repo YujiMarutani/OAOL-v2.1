@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "system_id": "OAOL_Runtime_v2_1",
+  "architecture_version": "v2.1",
+  "description": "Runtime specification for OAOL Autonomous Orchestration Operating Layer.",
+
+  "phase_state_machine": {
+    "states": ["normal", "pressure", "critical", "halt", "recover"],
+    "transitions": [
+      { "from": "normal", "to": "pressure" },
+      { "from": "pressure", "to": "critical" },
+      { "from": "critical", "to": "halt" },
+      { "from": "halt", "to": "recover" },
+      { "from": "recover", "to": "normal" }
+    ]
+  },
+
+  "task_graph_schema": {
+    "type": "object",
+    "properties": {
+      "task_id": { "type": "string" },
+      "title": { "type": "string" },
+      "agent": {
+        "type": "string",
+        "enum": ["G", "C", "N", "E", "Phi", "M", "X", "R"]
+      },
+      "phase": {
+        "type": "string",
+        "enum": ["normal", "pressure", "critical", "halt", "recover"]
+      },
+      "inputs": { "type": "array", "items": { "type": "string" } },
+      "outputs": { "type": "array", "items": { "type": "string" } },
+      "priority": { "type": "integer", "minimum": 1, "maximum": 5 }
+    },
+    "required": ["task_id", "agent", "phase", "priority"]
+  },
+
+  "agent_channels": {
+    "G": ["C", "Phi", "N"],
+    "C": ["N", "R"],
+    "N": ["M"],
+    "E": ["Phi", "G"],
+    "Phi": ["G", "R"],
+    "M": ["N", "G"],
+    "X": ["G", "C"],
+    "R": ["G", "C", "Phi"]
+  },
+
+  "audit_hooks": {
+    "enable": true,
+    "log_level": "info",
+    "record_phase_shift": true,
+    "record_agent_failures": true
+  }
+}
