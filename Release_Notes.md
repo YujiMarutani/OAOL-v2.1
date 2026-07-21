@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21471508.svg)](https://doi.org/10.5281/zenodo.21471508)
+
+
 ## OAOL v2.1 — Canonical Release
 
 This release contains the complete canonical JSON specifications for OAOL v2.1.
