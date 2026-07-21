@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "system_id": "OAOL_Orchestration_v2",
+  "architecture_version": "v2.1",
+  "description": "Core orchestration specification for OAOL Autonomous Orchestration Operating Layer.",
+
+  "orchestration_kernel": {
+    "id": "OAOL_Kernel",
+    "role": "Agent routing, phase enforcement, and task graph execution.",
+    "components": [
+      "task_graph_engine",
+      "phase_state_machine",
+      "agent_channel_router",
+      "fallback_manager"
+    ]
+  },
+
+  "task_graph_engine": {
+    "schema_ref": "OAOL_Runtime_v2_1#/task_graph_schema",
+    "decomposition_rules": {
+      "max_depth": 5,
+      "max_children": 8,
+      "allow_parallel": true,
+      "allow_sequential": true
+    },
+    "validation": {
+      "check_agent_enum": true,
+      "check_phase_enum": true,
+      "check_priority_range": true
+    }
+  },
+
+  "phase_constraints": {
+    "normal": {
+      "allowed_agents": ["G", "C", "N", "M", "X"],
+      "max_parallel_tasks": 6
+    },
+    "pressure": {
+      "allowed_agents": ["G", "C", "N", "E", "Phi", "R"],
+      "max_parallel_tasks": 4
+    },
+    "critical": {
+      "allowed_agents": ["Phi", "R", "E"],
+      "max_parallel_tasks": 2
+    },
+    "halt": {
+      "allowed_agents": ["Phi"],
+      "max_parallel_tasks": 0
+    },
+    "recover": {
+      "allowed_agents": ["R", "C", "Phi"],
+      "max_parallel_tasks": 3
+    }
+  },
+
+  "agent_channels": {
+    "G": ["C", "Phi", "N"],
+    "C": ["N", "R"],
+    "N": ["M"],
+    "E": ["Phi", "G"],
+    "Phi": ["G", "R"],
+    "M": ["N", "G"],
+    "X": ["G", "C"],
+    "R": ["G", "C", "Phi"]
+  },
+
+  "fallback_rules": {
+    "on_agent_failure": {
+      "primary": "R",
+      "secondary": "C",
+      "actions": ["reroute_task", "reduce_phase", "log_event"]
+    },
+    "on_phase_overload": {
+      "primary": "Phi",
+      "actions": ["shift_phase", "notify_sovereign"]
+    },
+    "on_schema_mismatch": {
+      "primary": "C",
+      "secondary": "M",
+      "actions": ["canonicalize", "retry"]
+    }
+  },
+
+  "sovereign_override_points": {
+    "steps": [1, 2, 4, 5, 8],
+    "permissions": {
+      "allow_cancel": true,
+      "allow_force_phase_shift": true,
+      "allow_task_rewrite": true
+    }
+  }
+}
