@@ -24,7 +24,6 @@ OAOL-v2.1/
 ├── figures/                   # Architecture diagrams, emblem, visual materials
 └── runtime/                   # Execution layer (future extensions)
 
-
 ---
 
 ## 🧠 OAOL Architecture Overview
@@ -69,66 +68,13 @@ Detailed prompts are defined in `OAOL_Agent_Prompts_v2.0.json`.
 
 ## 📚 Canonical Knowledge Base (Agent M)
 
-Agent M retrieves authoritative knowledge from **Zenodo DOI** and **GitHub Release**.
+Agent M retrieves authoritative knowledge from:
 
 ### Zenodo DOI  
-(To be updated after publication)  
-
-
----
-
-## 🧠 OAOL Architecture Overview
-
-OAOL is structured into four layers:
-
-### **L4 — Sovereign Intent Layer**
-Defines human sovereign goals, ethical boundaries, constraints, and priority.  
-`OAOL_Intent_v2.json`
-
-### **L3 — Orchestration & Semantic Layer**
-Task graph generation, phase management, agent routing.  
-`OAOL_Orchestration_v2.json`  
-`OAOL_Orchestration_Flow_v2_1.json`
-
-### **L2 — Boundary & Security Layer**
-Phase state machine, agent channels, audit hooks.  
-`OAOL_v2_1_Runtime_Spec.json`
-
-### **L1 — Execution Layer**
-Bindings to external systems, simulations, and canonical knowledge sources.  
-`OAOL_Execution_Bindings_v2_1.json`
-
----
-
-## 🎼 Philharmonia Agents (8 Agents)
-
-| Agent | Role |
-|-------|------|
-| **G** | Transform intent → task graph |
-| **C** | Harmonization and integration |
-| **N** | Final narrative generation |
-| **E** | Risk probing and instability detection |
-| **Phi** | Phase state management |
-| **M** | Canonical knowledge retrieval (Zenodo/GitHub) |
-| **X** | External data acquisition |
-| **R** | Recovery, fallback, rerouting |
-
-Detailed prompts are defined in `OAOL_Agent_Prompts_v2.0.json`.
-
----
-
-## 📚 Canonical Knowledge Base (Agent M)
-
-Agent M retrieves authoritative knowledge from **Zenodo DOI** and **GitHub Release**.
-
-### Zenodo DOI  
-
-10.5281/zenodo.21471508
+**10.5281/zenodo.21471508**
 
 ### GitHub Release  
-
 https://github.com/YujiMarutani/OAOL-v2.1/releases/tag/v2.1
-
 
 Canonical KB specification: `OAOL_Canonical_KB_v2_1.json`
 
@@ -147,7 +93,7 @@ Canonical KB specification: `OAOL_Canonical_KB_v2_1.json`
 ## 📄 License
 
 MIT License (recommended)  
-You may adjust as needed.
+The license may be adjusted to align with your system architecture, deployment model, or governance constraints.
 
 ---
 
@@ -156,3 +102,18 @@ You may adjust as needed.
 Y.Marutani  
 Independent Researcher — AI Agents / OS-level System Design / Civilization-scale Architectures
 
+---
+
+## 📚 Citation (BibTeX)
+
+```bibtex
+@software{marutani_2026_21471508,
+  author       = {Marutani, Yuji},
+  title        = {OAOL v2.1 — Autonomous Orchestration Operating Layer},
+  month        = jul,
+  year         = 2026,
+  publisher    = {Zenodo},
+  version      = {v2.1},
+  doi          = {10.5281/zenodo.21471508},
+  url          = {https://doi.org/10.5281/zenodo.21471508}
+}
