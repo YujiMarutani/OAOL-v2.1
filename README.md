@@ -93,7 +93,7 @@ Canonical KB specification: `OAOL_Canonical_KB_v2_1.json`
 ## 📄 License
 
 MIT License (recommended)  
-The license may be adjusted to align with your system architecture, deployment model, or governance constraints.
+The license may be adapted to align with your system architecture, deployment model, or governance constraints.
 
 ---
 
@@ -101,19 +101,3 @@ The license may be adjusted to align with your system architecture, deployment m
 
 Y.Marutani  
 Independent Researcher — AI Agents / OS-level System Design / Civilization-scale Architectures
-
----
-
-## 📚 Citation (BibTeX)
-
-```bibtex
-@software{marutani_2026_21471508,
-  author       = {Marutani, Yuji},
-  title        = {OAOL v2.1 — Autonomous Orchestration Operating Layer},
-  month        = jul,
-  year         = 2026,
-  publisher    = {Zenodo},
-  version      = {v2.1},
-  doi          = {10.5281/zenodo.21471508},
-  url          = {https://doi.org/10.5281/zenodo.21471508}
-}
