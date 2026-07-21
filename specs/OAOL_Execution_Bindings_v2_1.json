@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "system_id": "OAOL_Execution_Bindings_v2_1",
+  "architecture_version": "v2.1",
+  "description": "Execution bindings for OAOL v2.1, mapping agents to external systems, APIs, and simulation environments.",
+
+  "bindings": {
+    "G": {
+      "id": "Governance",
+      "execution": {
+        "type": "local",
+        "engine": "oaol_task_graph_engine",
+        "dependencies": ["oaol_intent_parser", "oaol_schema_validator"]
+      }
+    },
+
+    "C": {
+      "id": "Cohesion",
+      "execution": {
+        "type": "local",
+        "engine": "oaol_harmony_engine",
+        "dependencies": ["oaol_conflict_resolver"]
+      }
+    },
+
+    "N": {
+      "id": "Narrative",
+      "execution": {
+        "type": "local",
+        "engine": "oaol_narrative_engine",
+        "dependencies": ["oaol_canonical_context_merger"]
+      }
+    },
+
+    "E": {
+      "id": "Entropy",
+      "execution": {
+        "type": "local",
+        "engine": "oaol_entropy_probe",
+        "dependencies": ["oaol_risk_detector"]
+      }
+    },
+
+    "Phi": {
+      "id": "Phase",
+      "execution": {
+        "type": "local",
+        "engine": "oaol_phase_state_machine",
+        "dependencies": ["oaol_entropy_probe", "oaol_phase_rules"]
+      }
+    },
+
+    "M": {
+      "id": "Memory",
+      "execution": {
+        "type": "external",
+        "sources": {
+          "zenodo": {
+            "enabled": true,
+            "doi": "10.XXXX/zenodo.OAOL_v2_1"
+          },
+          "github_release": {
+            "enabled": true,
+            "url": "https://github.com/<your-account>/OAOL-v2.1/releases/tag/v2.1"
+          }
+        },
+        "engine": "oaol_canonical_retriever",
+        "dependencies": ["oaol_version_checker"]
+      }
+    },
+
+    "X": {
+      "id": "External",
+      "execution": {
+        "type": "external",
+        "sources": {
+          "enterprise_os": {
+            "enabled": false,
+            "endpoint": null
+          },
+          "simulation_gcs": {
+            "enabled": true,
+            "endpoint": "https://gcs-sim.example/api/v1"
+          }
+        },
+        "engine": "oaol_external_sensor",
+        "dependencies": ["oaol_api_validator"]
+      }
+    },
+
+    "R": {
+      "id": "Resilience",
+      "execution": {
+        "type": "local",
+        "engine": "oaol_resilience_engine",
+        "dependencies": ["oaol_fallback_manager", "oaol_phase_state_machine"]
+      }
+    }
+  },
+
+  "global_settings": {
+    "retry_limit": 3,
+    "timeout_seconds": 12,
+    "log_level": "info",
+    "enable_metrics": true
+  }
+}
