@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "system_id": "OAOL_Orchestration_Flow_v2_1",
+  "architecture_version": "v2.1",
+  "description": "Execution flow specification for OAOL v2.1, defining step-by-step orchestration behavior.",
+
+  "flow": {
+    "steps": [
+      {
+        "step": 1,
+        "agent": "G",
+        "action": "transform_intent_to_task_graph",
+        "inputs": ["intent_packet"],
+        "outputs": ["task_graph"],
+        "phase": "normal"
+      },
+      {
+        "step": 2,
+        "agent": "Phi",
+        "action": "evaluate_phase_state",
+        "inputs": ["task_graph"],
+        "outputs": ["phase_state"],
+        "phase": "normal"
+      },
+      {
+        "step": 3,
+        "agent": "Kernel",
+        "action": "route_tasks_to_agents",
+        "inputs": ["task_graph", "phase_state"],
+        "outputs": ["agent_task_assignments"],
+        "phase": "normal"
+      },
+      {
+        "step": 4,
+        "agent": "E",
+        "action": "probe_risk_and_entropy",
+        "inputs": ["agent_task_assignments"],
+        "outputs": ["entropy_report"],
+        "phase": "pressure"
+      },
+      {
+        "step": 5,
+        "agent": "Phi",
+        "action": "update_phase_state_machine",
+        "inputs": ["entropy_report"],
+        "outputs": ["updated_phase_state"],
+        "phase": "pressure"
+      },
+      {
+        "step": 6,
+        "agent": "C",
+        "action": "harmonize_agent_outputs",
+        "inputs": ["agent_task_assignments"],
+        "outputs": ["harmonized_state"],
+        "phase": "normal"
+      },
+      {
+        "step": 7,
+        "agent": "M",
+        "action": "retrieve_canonical_knowledge",
+        "inputs": ["harmonized_state"],
+        "outputs": ["canonical_context"],
+        "phase": "normal"
+      },
+      {
+        "step": 8,
+        "agent": "N",
+        "action": "generate_final_narrative",
+        "inputs": ["harmonized_state", "canonical_context"],
+        "outputs": ["final_output"],
+        "phase": "normal"
+      }
+    ]
+  },
+
+  "phase_shift_conditions": {
+    "to_pressure": {
+      "trigger": "entropy_report.level > 0.6",
+      "required_agent": "Phi"
+    },
+    "to_critical": {
+      "trigger": "entropy_report.level > 0.85",
+      "required_agent": "Phi"
+    },
+    "to_halt": {
+      "trigger": "system_fault_detected == true",
+      "required_agent": "Phi"
+    },
+    "to_recover": {
+      "trigger": "stability_score > 0.7",
+      "required_agent": "R"
+    }
+  },
+
+  "fallback_paths": {
+    "agent_failure": {
+      "primary": "R",
+      "secondary": "C",
+      "actions": ["reroute_task", "reduce_phase", "log_event"]
+    },
+    "schema_mismatch": {
+      "primary": "C",
+      "secondary": "M",
+      "actions": ["canonicalize", "retry"]
+    },
+    "external_timeout": {
+      "primary": "R",
+      "actions": ["switch_to_local_model", "notify_phase_manager"]
+    }
+  }
+}
