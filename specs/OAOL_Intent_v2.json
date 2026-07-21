@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "system_id": "OAOL_Intent_v2",
+  "architecture_version": "v2.1",
+  "description": "Sovereign Intent Layer specification for OAOL v2.1.",
+
+  "sovereign": {
+    "id": "L4_Human",
+    "role": "Sovereign Intent Emitter",
+    "permissions": {
+      "allow_cancel": true,
+      "allow_force_phase_shift": true,
+      "allow_task_rewrite": true
+    }
+  },
+
+  "goal_manifold": {
+    "type": "object",
+    "properties": {
+      "primary_goal": { "type": "string" },
+      "secondary_goals": { "type": "array", "items": { "type": "string" } },
+      "constraints": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["ethical", "resource", "time", "risk"]
+        }
+      },
+      "priority": { "type": "integer", "minimum": 1, "maximum": 5 }
+    },
+    "required": ["primary_goal", "priority"]
+  },
+
+  "intent_packet": {
+    "type": "object",
+    "properties": {
+      "intent_id": { "type": "string" },
+      "timestamp": { "type": "string", "format": "date-time" },
+      "goal_manifold_ref": { "type": "string", "const": "goal_manifold" },
+      "phase_request": {
+        "type": "string",
+        "enum": ["normal", "pressure", "critical", "halt", "recover"]
+      },
+      "sovereign_overrides": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": ["force_phase", "cancel_task", "rewrite_task"]
+        }
+      }
+    },
+    "required": ["intent_id", "timestamp", "goal_manifold_ref"]
+  }
+}
