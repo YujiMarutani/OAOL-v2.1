@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21471508.svg)](https://doi.org/10.5281/zenodo.21471508)
+
 # OAOL v2.1 — Autonomous Orchestration Operating Layer
 
 OAOL (Autonomous Orchestration Operating Layer) v2.1 is a multi‑agent orchestration architecture designed to transform human sovereign intent into executable task graphs, manage dynamic phase states, detect instability, harmonize multi‑agent outputs, recover from failures, and retrieve canonical knowledge from immutable academic sources.
