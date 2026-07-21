@@ -120,9 +120,8 @@ Detailed prompts are defined in `OAOL_Agent_Prompts_v2.0.json`.
 Agent M retrieves authoritative knowledge from **Zenodo DOI** and **GitHub Release**.
 
 ### Zenodo DOI  
-(To be updated after publication)  
 
-10.5281/zenodo.21471508/zenodo.OAOL_v2_1
+10.5281/zenodo.21471508/
 
 ### GitHub Release  
 
